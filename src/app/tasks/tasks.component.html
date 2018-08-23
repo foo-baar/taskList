@@ -1,0 +1,27 @@
+<div>
+    <h1>
+        Task List
+    </h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-7">
+            <input type="text" class="form-control" placeholder="Enter next task.." [(ngModel)]=task.name>
+        </div>
+        <div class="col-md-2">
+            <select class="form-control" [(ngModel)]="priority">
+                <option *ngFor="let p of priorityList">
+                    {{p.name}}
+                </option>
+            </select>
+        </div>
+
+        <Button class="btn btn-primary" (click)="addTask()">Add Task</Button>
+    </div>
+    <br />
+    <div class="row">
+        <div class="well hoverwell thumbnail" *ngFor="let task of tasks">
+            {{task?.name}}
+            <button type="button" class="btn btn-link" title="REMOVE IT" (click)="removeTask(task.id)">[ done 👍]</button>
+        </div>
+    </div>
+</div>
