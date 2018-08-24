@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Task } from '../models/task';
 import { TaskService } from '../services/task.service';
 
-
 @Component({
   selector: 'my-app',
   templateUrl: './tasks.component.html',
@@ -21,10 +20,11 @@ export class TasksComponent implements OnInit  {
     this.task = new Task();
     this.tasks = this.taskService.getTasks();
   }
-  addTask():void{
-    this.task.id = this.getRandomId();
-    this.tasks = this.taskService.addTask(this.task);
-    this.task = new Task();
+  addTask(): void {
+    !!this.task.name &&
+      (this.task.id = this.getRandomId(),
+        this.tasks = this.taskService.addTask(this.task),
+        this.task = new Task());
   }
   removeTask(id: number): void{
     this.taskService.removeTask(id);
